@@ -4,10 +4,12 @@ os.environ['PYTORCH_ENABLE_MPS_FALLBACK'] = "1"
 import torch
 
 # data directory
-DATA_DIR = 'data/'
+# DATA_DIR = 'data/'
+DATA_DIR = '/home/projects/ACT/data/output/hdf5'
 
 # checkpoint directory
-CHECKPOINT_DIR = 'checkpoints/'
+# CHECKPOINT_DIR = 'checkpoints/'
+CHECKPOINT_DIR = '/home/projects/ACT/data/ACT_checkpoint'
 
 # device
 device = 'cpu'
@@ -23,14 +25,24 @@ ROBOT_PORTS = {
 
 
 # task config (you can add new tasks)
+# TASK_CONFIG = {
+#     'dataset_dir': DATA_DIR,
+#     'episode_len': 300,
+#     'state_dim': 5,
+#     'action_dim': 5,
+#     'cam_width': 640,
+#     'cam_height': 480,
+#     'camera_names': ['front'],
+#     'camera_port': 0
+# }
 TASK_CONFIG = {
     'dataset_dir': DATA_DIR,
-    'episode_len': 300,
-    'state_dim': 5,
-    'action_dim': 5,
+    'episode_len': 360,
+    'state_dim': 6,
+    'action_dim': 6,
     'cam_width': 640,
     'cam_height': 480,
-    'camera_names': ['front'],
+    'camera_names': ['camera'],
     'camera_port': 0
 }
 
@@ -48,7 +60,7 @@ POLICY_CONFIG = {
     'enc_layers': 4,
     'dec_layers': 7,
     'nheads': 8,
-    'camera_names': ['front'],
+    'camera_names': ['camera'],
     'policy_class': 'ACT',
     'temporal_agg': False
 }

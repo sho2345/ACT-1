@@ -27,6 +27,10 @@ device = os.environ['DEVICE']
 def forward_pass(data, policy):
     image_data, qpos_data, action_data, is_pad = data
     image_data, qpos_data, action_data, is_pad = image_data.to(device), qpos_data.to(device), action_data.to(device), is_pad.to(device)
+    # print("image_data",image_data.size()) #torch.Size([8, 1, 3, 480, 640])
+    # print("qpos_data",image_data.size()) #([8, 1, 3, 480, 640])
+    # print("action_data",image_data.size()) #"torch.Size([8, 1, 3, 480, 640])"
+    # print("is_pad",is_pad.size()) #torch.Size([8, 360])
     return policy(qpos_data, image_data, action_data, is_pad) # TODO remove None
 
 def plot_history(train_history, validation_history, num_epochs, ckpt_dir, seed):
@@ -50,6 +54,7 @@ def train_bc(train_dataloader, val_dataloader, policy_config):
     # load policy
     policy = make_policy(policy_config['policy_class'], policy_config)
     policy.to(device)
+
 
     # load optimizer
     optimizer = make_optimizer(policy_config['policy_class'], policy)
@@ -119,6 +124,7 @@ if __name__ == '__main__':
    # number of training episodes
     data_dir = os.path.join(task_cfg['dataset_dir'], task)
     num_episodes = len(os.listdir(data_dir))
+    # print("num_episodes",num_episodes)
 
     # load data
     train_dataloader, val_dataloader, stats, _ = load_data(data_dir, num_episodes, task_cfg['camera_names'],

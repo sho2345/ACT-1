@@ -177,3 +177,7 @@ deletable.*
 
 # videos
 *.mp4
+
+
+ACT/data/
+ACT/dataset/
