@@ -179,5 +179,5 @@ deletable.*
 *.mp4
 
 
-ACT/data/
-ACT/dataset/
+data/
+dataset/
